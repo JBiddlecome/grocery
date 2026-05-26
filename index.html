@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <div>
+            <h1>Grocery Tracker</h1>
+            <p class="subtitle">Track product costs over time</p>
+        </div>
+        <nav class="header-nav">
+            <button class="nav-btn active" id="nav-products">Products</button>
+            <button class="nav-btn" id="nav-deals">
+                Deals
+                <span class="deal-badge hidden" id="deal-count-badge"></span>
+            </button>
+        </nav>
+    </div>
+</header>
+
+<main id="app">
+
+    <!-- ── Products tab ─────────────────────────────────────────────────────── -->
+    <div id="tab-products">
+
+        <!-- List view -->
+        <div id="list-view">
+            <div class="controls">
+                <input type="text" id="search" placeholder="Search products..." autocomplete="off">
+                <select id="dept-filter">
+                    <option value="">All Departments</option>
+                </select>
+            </div>
+            <p id="result-count" class="result-count"></p>
+            <div class="table-wrap">
+                <table id="product-table">
+                    <thead>
+                        <tr>
+                            <th class="col-rank">#</th>
+                            <th>Product</th>
+                            <th>Department</th>
+                            <th class="col-num">Purchases</th>
+                            <th class="col-num">Avg Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="product-body">
+                        <tr><td colspan="5" class="loading-msg">Loading data…</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Detail view -->
+        <div id="detail-view" class="hidden">
+            <button id="back-btn">&#8592; Back to Products</button>
+
+            <div class="product-header">
+                <h2 id="detail-name"></h2>
+                <span class="dept-badge" id="detail-dept"></span>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <span class="stat-label">Total Purchases</span>
+                    <span class="stat-value" id="detail-count"></span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Average Price</span>
+                    <span class="stat-value" id="detail-avg"></span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Price Range</span>
+                    <span class="stat-value" id="detail-range"></span>
+                </div>
+            </div>
+
+            <div class="chart-wrap">
+                <h3 class="section-title">Price Over Time</h3>
+                <canvas id="price-chart"></canvas>
+            </div>
+
+            <div class="history-section">
+                <h3 class="section-title">Purchase History</h3>
+                <div class="table-wrap">
+                    <table id="history-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Store</th>
+                                <th>Product Name</th>
+                                <th>Brand</th>
+                                <th class="col-num">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /tab-products -->
+
+
+    <!-- ── Deals tab ────────────────────────────────────────────────────────── -->
+    <div id="tab-deals" class="hidden">
+
+        <div class="deals-header">
+            <div>
+                <h2 class="deals-title">Current Deals at Ralphs</h2>
+                <p class="deals-subtitle" id="deals-last-updated">Pull deals to see coupons and weekly ad matches for your products.</p>
+            </div>
+            <button class="refresh-btn" id="refresh-deals-btn">
+                <span id="refresh-icon">&#8635;</span>
+                <span id="refresh-label">Check Deals Now</span>
+            </button>
+        </div>
+
+        <div id="deals-status" class="deals-status hidden"></div>
+
+        <!-- Summary bar -->
+        <div class="deals-summary hidden" id="deals-summary">
+            <div class="summary-stat">
+                <span class="summary-num" id="sum-coupons">—</span>
+                <span class="summary-lbl">coupons scanned</span>
+            </div>
+            <div class="summary-stat">
+                <span class="summary-num" id="sum-matches">—</span>
+                <span class="summary-lbl">your products matched</span>
+            </div>
+            <div class="summary-stat">
+                <span class="summary-num" id="sum-below">—</span>
+                <span class="summary-lbl">below your avg price</span>
+            </div>
+        </div>
+
+        <div id="deals-body">
+            <p class="loading-msg" style="padding:3rem 0">Click "Check Deals Now" to scan Ralphs for coupons and weekly ad items matching your purchased products.</p>
+        </div>
+
+    </div><!-- /tab-deals -->
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

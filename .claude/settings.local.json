@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "PowerShell(Stop-Process -Id \\(Get-NetTCPConnection -LocalPort 8080 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess\\) -Force -ErrorAction SilentlyContinue; Write-Output \"done\")",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(python -c \"import flask; print\\('flask ok'\\)\")",
+      "Bash(python -c \"import playwright; print\\('playwright ok'\\)\")",
+      "Bash(python -c \"import dotenv; print\\('dotenv ok'\\)\")",
+      "Bash(pip install *)",
+      "PowerShell(& \"C:\\\\Users\\\\jakeb\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\" -m playwright install chromium 2>&1)"
+    ]
+  }
+}
