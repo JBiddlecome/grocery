@@ -336,6 +336,131 @@ tbody td { padding: .7rem 1rem; font-size: .93rem; vertical-align: middle; }
 .deal-vs   { font-size: .85rem; color: #777; }
 .deal-count { font-size: .78rem; color: #aaa; margin-left: auto; }
 
+/* ── Price Check ─────────────────────────────────────────────────────────────── */
+
+#pc-table th, #pc-table td { padding: .45rem .6rem; }
+
+.pc-input {
+    width: 110px;
+    padding: .3rem .45rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: .82rem;
+    background: #fff;
+}
+.pc-input--size { width: 80px; }
+.pc-input:focus { outline: none; border-color: #2a7a48; box-shadow: 0 0 0 2px rgba(42,122,72,.15); }
+
+.pc-check-btn {
+    padding: .3rem .85rem;
+    background: #2a7a48;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: .82rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .15s;
+}
+.pc-check-btn:hover:not(:disabled) { background: #1f5c36; }
+.pc-check-btn:disabled { opacity: .5; cursor: default; }
+
+.pc-results-row .pc-results-cell { padding: 0; background: #f8fbf9; border-top: none; }
+.pc-results-row.hidden { display: none; }
+
+.pc-checking-msg {
+    padding: 1rem 1.2rem;
+    color: #555;
+    font-size: .9rem;
+    line-height: 1.6;
+}
+
+.pc-results-wrap { padding: .75rem 1.2rem 1.2rem; }
+
+.pc-avg-line {
+    font-size: .85rem;
+    color: #666;
+    margin-bottom: .65rem;
+}
+
+.pc-results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .85rem;
+}
+.pc-results-table th {
+    background: #eef3ee;
+    font-weight: 600;
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    color: #555;
+    padding: .4rem .6rem;
+    text-align: left;
+    border-bottom: 1px solid #dde8dd;
+}
+.pc-results-table td {
+    padding: .4rem .6rem;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+.pc-section-header td {
+    background: #f0f4f0;
+    font-size: .75rem;
+    font-weight: 700;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    padding: .35rem .6rem;
+    border-bottom: none;
+}
+.pc-generic-tag {
+    font-size: .7rem;
+    background: #eee;
+    color: #777;
+    border-radius: 3px;
+    padding: .1rem .35rem;
+    margin-left: .25rem;
+}
+
+.dept-tag--store {
+    background: #e8f0fe;
+    color: #1a56b0;
+}
+
+.pc-tag {
+    display: inline-block;
+    font-size: .75rem;
+    font-weight: 600;
+    padding: .15rem .4rem;
+    border-radius: 4px;
+    background: #eee;
+    color: #666;
+}
+.pc-tag--save { background: #d4edda; color: #1a5c2a; }
+.pc-tag--warn { background: #fff3cd; color: #856404; }
+.pc-tag--over { background: #fde8e8; color: #922; }
+
+.pc-best-deal {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    flex-wrap: wrap;
+    background: #d4edda;
+    border-left: 4px solid #2a7a48;
+    padding: .6rem 1rem;
+    font-size: .88rem;
+    color: #1a3a28;
+    margin-bottom: .6rem;
+}
+
+.pc-no-results {
+    padding: 1rem 1.2rem;
+    color: #888;
+    font-size: .9rem;
+}
+
 /* ── Responsive ──────────────────────────────────────────────────────────────── */
 
 @media (max-width: 680px) {

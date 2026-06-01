@@ -3,3 +3,4 @@ deals.json
 .ralphs_session.json
 __pycache__/
 *.pyc
+requirements.txt

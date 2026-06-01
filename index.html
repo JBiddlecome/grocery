@@ -22,6 +22,7 @@
                 Deals
                 <span class="deal-badge hidden" id="deal-count-badge"></span>
             </button>
+            <button class="nav-btn" id="nav-price-check">Price Check</button>
         </nav>
     </div>
 </header>
@@ -146,6 +147,34 @@
         </div>
 
     </div><!-- /tab-deals -->
+
+
+    <!-- ── Price Check tab ────────────────────────────────────────────────────── -->
+    <div id="tab-price-check" class="hidden">
+
+        <div class="deals-header">
+            <div>
+                <h2 class="deals-title">Price Check</h2>
+                <p class="deals-subtitle">Compare your average prices against current prices at Ralphs &amp; Walmart.</p>
+            </div>
+            <button class="refresh-btn" id="load-products-btn">
+                <span id="load-products-icon">&#8635;</span>
+                <span>Load My Products</span>
+            </button>
+        </div>
+
+        <div id="pc-walmart-notice" class="deals-status info hidden">
+            🖥️ A Walmart browser window has opened. If you see a "Robot or human?" prompt,
+            click and hold the button to verify — the check will continue automatically.
+        </div>
+
+        <div id="pc-body">
+            <p class="loading-msg" style="padding:3rem 0">
+                Click "Load My Products" to pull your top purchased items and check current prices.
+            </p>
+        </div>
+
+    </div><!-- /tab-price-check -->
 
 </main>
 

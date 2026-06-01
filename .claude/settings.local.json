@@ -10,7 +10,22 @@
       "Bash(pip install *)",
       "PowerShell(& \"C:\\\\Users\\\\jakeb\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\" -m playwright install chromium 2>&1)",
       "Bash(git push *)",
-      "Bash(git ls-remote *)"
+      "Bash(git ls-remote *)",
+      "Bash(where python *)",
+      "Bash(pip show *)",
+      "Bash(\"C:\\\\Users\\\\jakeb\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\" -m pip install playwright -q)",
+      "Bash(\"C:\\\\Users\\\\jakeb\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\" -m playwright install chromium)",
+      "Bash(\"C:\\\\Users\\\\jakeb\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\" -c \"import playwright; print\\('Playwright OK'\\)\")",
+      "Bash('C:\\\\Users\\\\jakeb\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe' -c ' *)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :8080)",
+      "Bash(tasklist /fi \"PID eq 8204\" /fo list)",
+      "Bash(tasklist /fi \"PID eq 33180\" /fo list)",
+      "Bash(tasklist)",
+      "Bash(findstr \"8204\\\\|33180\")",
+      "Bash(wmic process *)",
+      "PowerShell(Get-Process -Id 8204, 33180)",
+      "PowerShell(Get-WmiObject Win32_Process -Filter \"ProcessId=8204 OR ProcessId=33180\")"
     ]
   }
 }

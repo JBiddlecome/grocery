@@ -58,6 +58,7 @@ function init() {
     // Tab switching
     document.getElementById('nav-products').addEventListener('click', () => switchTab('products'));
     document.getElementById('nav-deals').addEventListener('click', () => switchTab('deals'));
+    document.getElementById('nav-price-check').addEventListener('click', () => switchTab('price-check'));
 
     // Deals refresh
     document.getElementById('refresh-deals-btn').addEventListener('click', refreshDeals);
@@ -75,11 +76,10 @@ function applyFilters() {
 // ── Tab switching ─────────────────────────────────────────────────────────────
 
 function switchTab(tab) {
-    const isProducts = tab === 'products';
-    document.getElementById('tab-products').classList.toggle('hidden', !isProducts);
-    document.getElementById('tab-deals').classList.toggle('hidden', isProducts);
-    document.getElementById('nav-products').classList.toggle('active', isProducts);
-    document.getElementById('nav-deals').classList.toggle('active', !isProducts);
+    ['products', 'deals', 'price-check'].forEach(t => {
+        document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== tab);
+        document.getElementById(`nav-${t}`).classList.toggle('active', t === tab);
+    });
 }
 
 // ── List view ─────────────────────────────────────────────────────────────────
@@ -386,6 +386,216 @@ function formatDateLabel(str) {
     try {
         return parseDate(str).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: '2-digit' });
     } catch { return str; }
+}
+
+// ── Price Check ───────────────────────────────────────────────────────────────
+
+let pcProducts   = [];
+let pcRunning    = false;   // true while any single item check is in flight
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('load-products-btn').addEventListener('click', loadPcProducts);
+});
+
+async function loadPcProducts() {
+    const btn  = document.getElementById('load-products-btn');
+    const body = document.getElementById('pc-body');
+    btn.disabled = true;
+    document.getElementById('load-products-icon').textContent = '⏳';
+    body.innerHTML = '<p class="loading-msg" style="padding:2rem 0">Loading your products…</p>';
+
+    try {
+        const res  = await fetch('/api/price-check/products');
+        const data = await res.json();
+        if (data.error) throw new Error(data.error);
+        pcProducts = data;
+        renderPcList(pcProducts);
+    } catch (e) {
+        body.innerHTML = `<p class="loading-msg" style="padding:2rem 0;color:#c0392b">
+            Could not load products: ${esc(e.message)}<br>
+            Make sure the server is running with <code>python server.py</code>.
+        </p>`;
+    } finally {
+        btn.disabled = false;
+        document.getElementById('load-products-icon').textContent = '↺';
+    }
+}
+
+function renderPcList(products) {
+    const body = document.getElementById('pc-body');
+    if (!products.length) {
+        body.innerHTML = '<p class="loading-msg" style="padding:2rem 0">No products found.</p>';
+        return;
+    }
+    body.innerHTML = `
+        <div class="table-wrap">
+            <table id="pc-table">
+                <thead>
+                    <tr>
+                        <th class="col-rank">#</th>
+                        <th>Product</th>
+                        <th>Dept</th>
+                        <th class="col-num">Buys</th>
+                        <th class="col-num">Avg Price</th>
+                        <th>Brand</th>
+                        <th>Size</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="pc-tbody"></tbody>
+            </table>
+        </div>
+    `;
+
+    const tbody = document.getElementById('pc-tbody');
+    tbody.innerHTML = products.map((p, i) => `
+        <tr id="pc-row-${i}" class="pc-row">
+            <td class="rank-num col-rank">${i + 1}</td>
+            <td><strong>${esc(p.item_basic)}</strong></td>
+            <td><span class="dept-tag">${esc(p.department)}</span></td>
+            <td class="col-num count-cell">${p.count}</td>
+            <td class="col-num price-cell">$${p.avg_price.toFixed(2)}</td>
+            <td>
+                <input class="pc-input" id="pc-brand-${i}" type="text"
+                       value="${esc(p.top_brand)}" placeholder="brand">
+            </td>
+            <td>
+                <input class="pc-input pc-input--size" id="pc-size-${i}" type="text"
+                       value="${esc(p.default_size)}" placeholder="size">
+            </td>
+            <td>
+                <button class="pc-check-btn" id="pc-btn-${i}"
+                        onclick="runPcItem(${i})">Check</button>
+            </td>
+        </tr>
+        <tr id="pc-results-${i}" class="pc-results-row hidden">
+            <td colspan="8" class="pc-results-cell">
+                <div id="pc-results-inner-${i}"></div>
+            </td>
+        </tr>
+    `).join('');
+}
+
+async function runPcItem(i) {
+    if (pcRunning) {
+        alert('A price check is already running. Please wait for it to finish.');
+        return;
+    }
+    const p       = pcProducts[i];
+    const brand   = document.getElementById(`pc-brand-${i}`).value.trim();
+    const size    = document.getElementById(`pc-size-${i}`).value.trim();
+    const btn     = document.getElementById(`pc-btn-${i}`);
+    const inner   = document.getElementById(`pc-results-inner-${i}`);
+    const resultsRow = document.getElementById(`pc-results-${i}`);
+    const notice  = document.getElementById('pc-walmart-notice');
+
+    pcRunning    = true;
+    btn.disabled = true;
+    btn.textContent = '…';
+    notice.classList.remove('hidden');
+    resultsRow.classList.remove('hidden');
+    inner.innerHTML = `<p class="pc-checking-msg">
+        🔍 Searching Ralphs and Walmart for <strong>${esc(brand || p.item_basic)} ${esc(size)}</strong>…
+        <br><small>Walmart requires a browser window — this may take 10–30 seconds.</small>
+    </p>`;
+
+    try {
+        const res  = await fetch('/api/price-check/item', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({
+                item_basic: p.item_basic,
+                brand,
+                size,
+                avg_price:  p.avg_price,
+                generics:   true,
+            }),
+        });
+        const data = await res.json();
+        if (data.error) throw new Error(data.error);
+        inner.innerHTML = renderPcResults(data, brand, p.avg_price);
+    } catch (e) {
+        inner.innerHTML = `<p style="color:#c0392b;padding:.75rem">Error: ${esc(e.message)}</p>`;
+    } finally {
+        pcRunning = false;
+        btn.disabled = false;
+        btn.textContent = 'Check';
+        notice.classList.add('hidden');
+    }
+}
+
+function renderPcResults(data, searchBrand, avgPrice) {
+    const all = [
+        ...(data.ralphs  || []),
+        ...(data.walmart || []),
+    ];
+
+    if (!all.length) {
+        return `<p class="pc-no-results">No results found at Ralphs or Walmart for this search.</p>`;
+    }
+
+    const brandLower = (searchBrand || '').toLowerCase();
+    const exact    = all.filter(r => brandLower && r.brand.toLowerCase().includes(brandLower));
+    const generics = all.filter(r => !exact.includes(r));
+    const best     = all.reduce((a, b) => a.price < b.price ? a : b);
+
+    const savingsTag = (price) => {
+        const diff = +(price - avgPrice).toFixed(2);
+        if (diff <= -0.50) return `<span class="pc-tag pc-tag--save">saves $${Math.abs(diff).toFixed(2)}</span>`;
+        if (diff < 0)      return `<span class="pc-tag pc-tag--save">saves $${Math.abs(diff).toFixed(2)}</span>`;
+        if (diff === 0)    return `<span class="pc-tag">same</span>`;
+        if (diff < 0.50)   return `<span class="pc-tag pc-tag--warn">+$${diff.toFixed(2)}</span>`;
+        return                    `<span class="pc-tag pc-tag--over">+$${diff.toFixed(2)}</span>`;
+    };
+
+    const row = (r, note) => `
+        <tr>
+            <td><span class="dept-tag dept-tag--store">${esc(r.store)}</span></td>
+            <td>${esc(r.brand)}${note ? ` <span class="pc-generic-tag">${note}</span>` : ''}</td>
+            <td>${esc(r.name)}</td>
+            <td class="col-num">${esc(r.size)}</td>
+            <td class="col-num price-cell">
+                $${r.price.toFixed(2)}
+                ${r.on_sale ? '<span class="deal-pill">SALE</span>' : ''}
+            </td>
+            <td>${savingsTag(r.price)}</td>
+        </tr>`;
+
+    const section = (title, items, note = '') => items.length ? `
+        <tr class="pc-section-header"><td colspan="6">${title}</td></tr>
+        ${items.slice(0, 5).map(r => row(r, note)).join('')}
+    ` : '';
+
+    const bestMsg = best.price < avgPrice
+        ? `<div class="pc-best-deal">
+               💡 Best deal: <strong>${esc(best.brand || 'store brand')}</strong>
+               ${best.size ? `(${esc(best.size)})` : ''} at <strong>${esc(best.store)}</strong>
+               — $${best.price.toFixed(2)}
+               <span class="pc-tag pc-tag--save">saves $${(avgPrice - best.price).toFixed(2)}/unit</span>
+           </div>`
+        : '';
+
+    return `
+        ${bestMsg}
+        <div class="pc-results-wrap">
+            <p class="pc-avg-line">Your avg: <strong>$${avgPrice.toFixed(2)}</strong>
+               &nbsp;·&nbsp; Range: $${Math.min(...all.map(r=>r.price)).toFixed(2)} – $${Math.max(...all.map(r=>r.price)).toFixed(2)} across both stores</p>
+            <table class="pc-results-table">
+                <thead>
+                    <tr>
+                        <th>Store</th><th>Brand</th><th>Product</th>
+                        <th class="col-num">Size</th>
+                        <th class="col-num">Price</th>
+                        <th>vs. Avg</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${section('— Your brand —', exact)}
+                    ${section('— Alternatives / store brand —', generics, '')}
+                </tbody>
+            </table>
+        </div>
+    `;
 }
 
 // ── Start ─────────────────────────────────────────────────────────────────────
