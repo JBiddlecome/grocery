@@ -25,7 +25,9 @@
       "Bash(findstr \"8204\\\\|33180\")",
       "Bash(wmic process *)",
       "PowerShell(Get-Process -Id 8204, 33180)",
-      "PowerShell(Get-WmiObject Win32_Process -Filter \"ProcessId=8204 OR ProcessId=33180\")"
+      "PowerShell(Get-WmiObject Win32_Process -Filter \"ProcessId=8204 OR ProcessId=33180\")",
+      "Bash(git add *)",
+      "Bash(git commit *)"
     ]
   }
 }
