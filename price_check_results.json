@@ -1,0 +1,292 @@
+[
+  {
+    "item_basic": "Bottled Water",
+    "avg_price": 1.6,
+    "purchase_count": 44,
+    "search_brand": "Crystal Geyser",
+    "search_size": "1 gal",
+    "search_query": "Crystal Geyser Bottled Water 1 gal",
+    "results": [
+      {
+        "store": "Ralphs",
+        "brand": "Kroger",
+        "name": "Kroger\u00ae Drinking Gallon Water",
+        "size": "2.5 gallons",
+        "price": 3.29,
+        "regular_price": 3.29,
+        "on_sale": false
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Crystal Geyser",
+        "name": "Crystal Geyser\u00ae Natural Alpine Spring Bottled Water",
+        "size": "35 bottles / 16.9 fl oz",
+        "price": 6.5,
+        "regular_price": 7.49,
+        "on_sale": true
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Kroger",
+        "name": "Kroger\u00ae Alkaline Gallon Bottled Water",
+        "size": "1 gallon",
+        "price": 3.79,
+        "regular_price": 3.79,
+        "on_sale": false
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Kroger",
+        "name": "Kroger\u00ae Distilled Gallon Water",
+        "size": "1 gallon",
+        "price": 1.39,
+        "regular_price": 1.39,
+        "on_sale": false
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Crystal Geyser",
+        "name": "Crystal Geyser\u00ae Alpine Spring Water\u00ae Bottle",
+        "size": "1.5 l",
+        "price": 1.0,
+        "regular_price": 1.49,
+        "on_sale": true
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Kroger",
+        "name": "Kroger\u00ae Spring Gallon Water",
+        "size": "2.5 gallons",
+        "price": 3.29,
+        "regular_price": 3.29,
+        "on_sale": false
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Kroger",
+        "name": "Kroger\u00ae Spring Gallon Water",
+        "size": "1 gallon",
+        "price": 1.39,
+        "regular_price": 1.39,
+        "on_sale": false
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Crystal Geyser",
+        "name": "CRYSTAL GEYSER 6 Pack Alpine Spring Water",
+        "size": "6 pk / 16.9 fl oz",
+        "price": 1.5,
+        "regular_price": 2.49,
+        "on_sale": true
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Crystal Geyser",
+        "name": "Crystal Geyser Alpine Spring Water Case of 30 x 8 fl oz Bottles",
+        "size": "240 fl oz",
+        "price": 6.99,
+        "regular_price": 6.99,
+        "on_sale": false
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Crystal Geyser",
+        "name": "Crystal Geyser Alpine Spring Gallon Water",
+        "size": "1 gallon",
+        "price": 1.79,
+        "regular_price": 1.79,
+        "on_sale": false
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Everyday Living",
+        "name": "Everyday Living\u00ae Push Bottle with Silicon Sleeve - Green",
+        "size": "1 gal",
+        "price": 7.49,
+        "regular_price": 14.99,
+        "on_sale": true
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Everyday Living",
+        "name": "Everyday Living\u00ae Push Bottle with Silicone Sleeve - Pink",
+        "size": "1 gal",
+        "price": 7.49,
+        "regular_price": 14.99,
+        "on_sale": true
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Everyday Living",
+        "name": "Everyday Living\u00ae Push Bottle with Silicone Sleeve - Blue",
+        "size": "1 gal",
+        "price": 7.49,
+        "regular_price": 14.99,
+        "on_sale": true
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Igloo",
+        "name": "Igloo\u00ae Half Gallon Beverage Jug - Gray",
+        "size": "1/2 gal",
+        "price": 9.09,
+        "regular_price": 12.99,
+        "on_sale": true
+      },
+      {
+        "store": "Ralphs",
+        "brand": "Everyday Living",
+        "name": "Everyday Living\u00ae Push Bottle with Silicone Sleeve - Orange",
+        "size": "1 gal",
+        "price": 7.49,
+        "regular_price": 14.99,
+        "on_sale": true
+      },
+      {
+        "store": "Walmart",
+        "brand": "Crystal Geyser Alpine",
+        "name": "Crystal Geyser Alpine Spring Water, 1 Gallon Plastic Jug",
+        "size": "1 Gal",
+        "price": 1.43,
+        "regular_price": 1.43,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "CRYSTAL GEYSER SINCE",
+        "name": "CRYSTAL GEYSER SINCE 1977 Purified Water 1 Gallon, 25.4 Fl Oz, (Pack of 2)",
+        "size": "1 Gal",
+        "price": 14.99,
+        "regular_price": 14.99,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Crystal Geyser Alpine",
+        "name": "Crystal Geyser Alpine Spring Water, 16.9 Oz Bottle, 35/Cs, 54 Cs/Pallet",
+        "size": "16.9 Oz",
+        "price": 659.99,
+        "regular_price": 659.99,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Crystal Geyser",
+        "name": "Crystal Geyser Natural Alpine Spring Water, 16.9 Oz Bottle, 24/Case, 84 Cases/Pallet",
+        "size": "16.9 Oz",
+        "price": 766.48,
+        "regular_price": 766.48,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Crystal Geyser Alpine",
+        "name": "Crystal Geyser Alpine Spring Water, 128 Fl Oz, 6 Ct",
+        "size": "128 Fl Oz",
+        "price": 15.06,
+        "regular_price": 15.06,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Crystal Geyser Alpine",
+        "name": "Crystal Geyser Alpine Spring Water, 16.9 Oz Bottle, 35/Cs, 54 Cs/Pallet",
+        "size": "16.9 Oz",
+        "price": 659.99,
+        "regular_price": 659.99,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Crystal Geyser",
+        "name": "Crystal Geyser Natural Alpine Spring Water, 16.9 Oz Bottle, 24/Case, 84 Cases/Pallet",
+        "size": "16.9 Oz",
+        "price": 766.48,
+        "regular_price": 766.48,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Crystal",
+        "name": "Crystal Geyser? Natural Alpine Spring Water? by CG Roxane 32-16.9 fl. oz. Bottles",
+        "size": "16.9 fl. oz",
+        "price": 5.87,
+        "regular_price": 5.87,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Great Value Natural",
+        "name": "Great Value Natural Spring Water, 1 Gallon",
+        "size": "1 Gal",
+        "price": 1.37,
+        "regular_price": 1.37,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Arrowhead Spring",
+        "name": "Arrowhead Spring Water, 1 Gal, Single Plastic Jug",
+        "size": "1 Gal",
+        "price": 2.18,
+        "regular_price": 2.18,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Perfect Hydration",
+        "name": "Perfect Hydration 9.5+ pH Alkaline Water, 1 Gallon Bottle",
+        "size": "1 Gal",
+        "price": 4.87,
+        "regular_price": 4.87,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Great Value Purified",
+        "name": "Great Value Purified Drinking Water, 1 Gallon",
+        "size": "1 Gal",
+        "price": 1.37,
+        "regular_price": 1.37,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Pathwater",
+        "name": "Pathwater Ultra-Purified Alkaline Water, 25 fl oz, Single Aluminum Bottle",
+        "size": "25 fl oz",
+        "price": 2.98,
+        "regular_price": 2.98,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Splash Acai Grape",
+        "name": "Splash Acai Grape Flavored Water, 16.9 Fl Oz, 6-pack Plastic Bottles",
+        "size": "16.9 Fl Oz",
+        "price": 2.68,
+        "regular_price": 2.68,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Great Value Distilled",
+        "name": "Great Value Distilled Water, 1 Gallon",
+        "size": "1 Gal",
+        "price": 1.44,
+        "regular_price": 1.44,
+        "on_sale": false
+      },
+      {
+        "store": "Walmart",
+        "brand": "Pure Life Distilled",
+        "name": "Pure Life Distilled Water, 1 Gallon, Single Plastic Jug",
+        "size": "1 Gal",
+        "price": 2.64,
+        "regular_price": 2.64,
+        "on_sale": false
+      }
+    ],
+    "checked_at": "2026-06-01T07:47:49.647999"
+  }
+]
