@@ -148,6 +148,10 @@ tbody td { padding: .7rem 1rem; font-size: .93rem; vertical-align: middle; }
 .count-cell { font-weight: 600; color: #444; }
 .price-cell { font-weight: 600; }
 
+.th-sortable { cursor: pointer; user-select: none; }
+.th-sortable:hover { color: #555; }
+.sort-indicator { color: #2a7a48; }
+
 .loading-msg { text-align: center; padding: 3rem 1rem; color: #aaa; font-size: .95rem; }
 
 /* Deal pill in product list */
