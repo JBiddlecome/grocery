@@ -34,6 +34,20 @@
 
         <!-- List view -->
         <div id="list-view">
+            <div class="deals-summary" id="purchase-stats-bar">
+                <div class="summary-stat">
+                    <span class="summary-num" id="stat-total-purchases">—</span>
+                    <span class="summary-lbl">items purchased</span>
+                </div>
+                <div class="summary-stat">
+                    <span class="summary-num" id="stat-total-spend">—</span>
+                    <span class="summary-lbl">total spent</span>
+                </div>
+                <div class="summary-stat">
+                    <span class="summary-num" id="stat-avg-price">—</span>
+                    <span class="summary-lbl">avg price per item</span>
+                </div>
+            </div>
             <div class="controls">
                 <input type="text" id="search" placeholder="Search products..." autocomplete="off">
                 <select id="dept-filter">
@@ -48,8 +62,8 @@
                             <th class="col-rank">#</th>
                             <th>Product</th>
                             <th>Department</th>
-                            <th class="col-num">Purchases</th>
-                            <th class="col-num">Avg Price</th>
+                            <th class="col-num th-sortable" id="th-purchases">Purchases<span class="sort-indicator"> ↓</span></th>
+                            <th class="col-num th-sortable" id="th-avg-price">Avg Price<span class="sort-indicator"></span></th>
                         </tr>
                     </thead>
                     <tbody id="product-body">

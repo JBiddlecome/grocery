@@ -1,6 +1,8 @@
 let allData = [];
 let allProducts = [];
 let currentChart = null;
+let sortBy  = 'count';
+let sortDir = 'desc';
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 
@@ -49,11 +51,15 @@ function buildProducts(rows) {
 function init() {
     allProducts = buildProducts(allData);
     populateDeptFilter(allProducts);
-    renderList(allProducts);
+    computeStats(allProducts);
+    applyFilters();
 
     document.getElementById('search').addEventListener('input', applyFilters);
     document.getElementById('dept-filter').addEventListener('change', applyFilters);
     document.getElementById('back-btn').addEventListener('click', goBack);
+
+    document.getElementById('th-purchases').addEventListener('click', () => toggleSort('count'));
+    document.getElementById('th-avg-price').addEventListener('click', () => toggleSort('avg'));
 
     // Tab switching
     document.getElementById('nav-products').addEventListener('click', () => switchTab('products'));
@@ -64,12 +70,41 @@ function init() {
     document.getElementById('refresh-deals-btn').addEventListener('click', refreshDeals);
 }
 
+function computeStats(products) {
+    const totalPurchases = products.reduce((s, p) => s + p.count, 0);
+    const totalSpend     = products.reduce((s, p) => s + p.total, 0);
+    const overallAvg     = totalSpend / totalPurchases;
+    document.getElementById('stat-total-purchases').textContent = totalPurchases.toLocaleString();
+    document.getElementById('stat-total-spend').textContent     = `$${totalSpend.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    document.getElementById('stat-avg-price').textContent       = `$${overallAvg.toFixed(2)}`;
+}
+
+function toggleSort(field) {
+    if (sortBy === field) {
+        sortDir = sortDir === 'desc' ? 'asc' : 'desc';
+    } else {
+        sortBy  = field;
+        sortDir = 'desc';
+    }
+    updateSortHeaders();
+    applyFilters();
+}
+
+function updateSortHeaders() {
+    [['count', 'th-purchases'], ['avg', 'th-avg-price']].forEach(([field, id]) => {
+        const indicator = document.getElementById(id).querySelector('.sort-indicator');
+        indicator.textContent = sortBy === field ? (sortDir === 'desc' ? ' ↓' : ' ↑') : '';
+    });
+}
+
 function applyFilters() {
     const q    = document.getElementById('search').value.trim().toLowerCase();
     const dept = document.getElementById('dept-filter').value;
     let filtered = allProducts;
     if (dept) filtered = filtered.filter(p => p.dept === dept);
     if (q)    filtered = filtered.filter(p => p.name.toLowerCase().includes(q));
+    const dir = sortDir === 'desc' ? -1 : 1;
+    filtered = [...filtered].sort((a, b) => (a[sortBy] - b[sortBy]) * dir);
     renderList(filtered);
 }
 
